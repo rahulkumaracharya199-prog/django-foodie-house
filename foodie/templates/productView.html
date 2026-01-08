@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie House | Product Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    {% include "header.html" %}
+
+    <main class="flex flex-col md:flex-row flex-grow px-4 md:px-10 py-6 gap-6">
+
+        <!-- Sidebar / Categories -->
+        <aside class="w-full md:w-3/12 bg-orange-200 p-5 md:p-10 rounded-lg md:rounded-xl">
+            <h2 class="text-2xl font-semibold text-indigo-900 mb-6 text-center">
+                Categories ({{ categories|length }})
+            </h2>
+            <div class="flex flex-col gap-3 md:gap-4">
+                {% for category in categories %}
+                <a href="#" 
+                   class="text-orange-700 font-semibold text-lg bg-white px-4 py-2 rounded-lg shadow hover:bg-gray-200 hover:text-black">
+                    {{ category.title }}
+                </a>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <!-- Product Detail -->
+        <section class="w-full md:w-9/12 bg-slate-200 p-5 md:p-10 rounded-lg md:rounded-xl">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto">
+
+                <!-- Product Image -->
+                <div class="flex items-center justify-center h-80 md:h-96 bg-gray-100">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="h-full object-contain">
+                </div>
+
+                <!-- Product Info -->
+                <div class="px-6 py-4 flex flex-col gap-4">
+                    <h1 class="text-orange-700 text-2xl font-bold">
+                        {{ product.name }}
+                    </h1>
+
+                    <p class="text-orange-500 text-sm md:text-base h-20 overflow-hidden">
+                        {{ product.description }}
+                    </p>
+
+                    <p class="text-orange-500 text-sm font-medium">
+                        Category: {{ product.category }}
+                    </p>
+
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-orange-700 font-bold text-xl">
+                            ₹{{ product.price }}
+                        </span>
+                        {% if product.discount_price %}
+                        <del class="text-gray-500 text-sm">
+                            ₹{{ product.discount_price }}
+                        </del>
+                        {% endif %}
+                        <button class="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition">
+                            Order Now
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    {% include "footer.html" %}
+
+</body>
+</html>
