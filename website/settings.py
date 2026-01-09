@@ -25,11 +25,7 @@ SECRET_KEY = 'django-insecure-5h*8o+a8ufc43*8#$k=_25-svqa-_i4!n%_-w-lndrg+t1=l$v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    '10.91.63.97',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -43,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "foodie"
 ]
+
+# AFTER LOGIN
+
+LOGIN_REDIRECT_URL = "/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
